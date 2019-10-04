@@ -1,9 +1,45 @@
 import pandas as pd
+import glob
 
-data = pd.read_excel(r'C:\Рога и копыта_январь 2018.xlsx', sheet_name=0, header=0, index_col=0, usecols="B:I", skiprows=10)
-df = pd.DataFrame(data=data)
-df.to_excel("C:\example\example.xlsx")
-print(df)
+folder = r'C:\example'
+files = glob.glob('C:\example\**\*.xlsx', recursive=True)
+
+df = pd.DataFrame()
+
+for num, fname in enumerate(files, start = 1):
+    print("File # {} | {}".format(num, fname))
+    if len(fname) > 0:
+        data = pd.read_excel(fname, sheet_name=0, header=0, index_col=0, usecols="B:I", skiprows=10)
+        df = data.append(data)
+
+df.head()
+df.to_excel('C:\example\example.xlsx')
+
+
+# for f in files_list:
+#     df = pd.read_excel(folder, sheet_name=0, header=0, index_col=0, usecols="B:I", skiprows=10)
+# print(df)
+
+# files = [os.path.join(folder, "*.xlsx") for f in folder]
+# all_file_frame = []
+# for f in files:
+#     # print('Reading %s'%f)
+#     # data = pd.read_excel(r'C:\example\Рога и копыта_январь 2018.xlsx', sheet_name=0, header=0, index_col=0, usecols="B:I",
+#     #                      skiprows=10)
+#     data = pd.read_excel(f, sheet_name=0, header=0, index_col=0, usecols="B:I", skiprows=10)
+#     all_file_frame.append(data)
+# all_frame = pd.concat(all_file_frame, axis=0)
+# all_frame.to_excel("C:\example\example1.xlsx")
+
+
+# path = r' C:\example\ '
+# filenames = glob.glob(path + '/*.xlsx')
+
+# data = pd.read_excel(r'C:\example\Рога и копыта_январь 2018.xlsx', sheet_name=0, header=0, index_col=0, usecols="B:I",
+#                      skiprows=10)
+# df = pd.DataFrame(data=data)
+# df.to_excel("C:\example\example.xlsx")
+# print(df)
 
 # import pandas as pd
 #
