@@ -14,6 +14,5 @@ class ExcelFiles(AbstractSource):
         self._source = source
 
 
-
     def pull(self):
         return glob(self._source, recursive=True)

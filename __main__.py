@@ -1,18 +1,14 @@
 import argparse
-from sources import *
-from collectors import *
+
+from Parser import collectors
+from Parser.collectors import ExcelCollector
 
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
-        description='utility for united Excel files in one Dataframe.'
+        description='utility for united Excel files in one Dataframe'
     )
 
-    parser.add_argument(
-        '--ignore-case',
-        action='store_true',
-        help='Ignore case',
-    )
 
     parser.add_argument(
         '-i', '--input',
@@ -30,7 +26,7 @@ if __name__ == '__main__':
 
     options = vars(parser.parse_args())
 
-    _collector = ExcelCollector():
+    _collector = collectors.ExcelCollector():
     _collector.configure(options)
 
     with open(options['input'], 'r') as f:
