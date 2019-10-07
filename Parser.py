@@ -1,5 +1,5 @@
-from sources import *
-from collectors import *
+from Parser.sources import *
+from Parser.collectors import *
 
 
 class ExcelParser(object):
